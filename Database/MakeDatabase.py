@@ -2,10 +2,10 @@ from shutil import Error
 import sqlite3
 
 
-def create_connection(db_file):
+def create_connection():
     connection = None
     try:
-        connection = sqlite3.connect(db_file)
+        connection = sqlite3.connect('Database/database.db')
     except Error as e:
         print(e)
 
@@ -32,6 +32,6 @@ def add_product_to_table(connection, produto):
     return cursor.lastrowid
 
 
-connection = create_connection('Database/database.db')
+# connection = create_connection('Database/database.db')
 # create_table_products(connection)
-add_product_to_table(connection, ('Dados Blend', 'Dado', 'Mercado RPG'))
+# add_product_to_table(connection, ('Dados Blend', 'Dado', 'Mercado RPG'))
