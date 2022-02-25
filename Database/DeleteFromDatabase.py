@@ -12,11 +12,12 @@ def create_connection():
     return connection
 
 
-def consult_database():
+def delete_from_database(name):
     connection = create_connection()
     cursor = connection.cursor()
 
-    sql = 'SELECT name, type, seller FROM Products'
-    products = cursor.execute(sql).fetchall()
+    sql = 'DELETE FROM Products WHERE name = ?'
+    val = (name,)
+    cursor.execute(sql, val)
 
-    return products
+    connection.commit()

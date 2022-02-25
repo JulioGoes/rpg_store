@@ -12,11 +12,12 @@ def create_connection():
     return connection
 
 
-def consult_database():
+def insert_database(product_name, product_type, product_seller):
     connection = create_connection()
     cursor = connection.cursor()
 
-    sql = 'SELECT name, type, seller FROM Products'
-    products = cursor.execute(sql).fetchall()
+    sql = 'INSERT INTO Products (name, type, seller) VALUES (?, ?, ?)'
+    val = (product_name, product_type, product_seller)
+    cursor.execute(sql, val)
 
-    return products
+    connection.commit()
